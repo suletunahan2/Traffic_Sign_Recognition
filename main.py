@@ -6,6 +6,7 @@ drive.mount('/content/drive')
 import pickle  
 import numpy as np
 
+
 training_file = '/content/drive/My Drive/Colab Notebooks/CNN/traffic-signs-data2.zip (Unzipped Files)/train.p'
 testing_file = '/content/drive/My Drive/Colab Notebooks/CNN/traffic-signs-data2.zip (Unzipped Files)/test.p'
 
@@ -19,3 +20,5 @@ x_train, y_train = train['features'], train['labels']
 x_test, y_test = test['features'], test['labels']
 
 print('Reading data done!')
+
+
