@@ -5,12 +5,6 @@ Created on Fri Apr  3 21:11:35 2020
 @author: suletunahan2
 """
 
-import pickle
-import numpy as np
-
-# Load pickled data
-import pickle
-import numpy as np
 
 training_file = '/content/drive/My Drive/Colab Notebooks/CNN/traffic-signs-data2.zip (Unzipped Files)/train.p'
 testing_file = '/content/drive/My Drive/Colab Notebooks/CNN/traffic-signs-data2.zip (Unzipped Files)/test.p'
