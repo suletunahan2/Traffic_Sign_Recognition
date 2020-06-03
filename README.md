@@ -38,7 +38,7 @@ The pickled data is a dictionary with 4 key/value pairs:
 **Then, I used `matplotlib` plot sample images .**
 
 <figure>
- <img src="./traffic-signs-data/Screenshots/first.png" width="1072" alt="Combined Image" />
+ <img src="./traffic-signs-data/README-img/first.png" width="1072" alt="Combined Image" />
  <figcaption>
  <p></p> 
  </figcaption>
@@ -46,7 +46,7 @@ The pickled data is a dictionary with 4 key/value pairs:
 
 ** Then, I used `seaborn` to plot a histogram of the count of images in each unique class.
 <figure>
- <img src="./traffic-signs-data/Screenshots/seaborn.png" width="1072" alt="Combined Image" />
+ <img src="./traffic-signs-data/README-img/seaborn.png" width="1072" alt="Combined Image" />
  <figcaption>
  <p></p> 
  </figcaption>
@@ -54,7 +54,7 @@ The pickled data is a dictionary with 4 key/value pairs:
 
 **And finally, I will use `numpy` to plot a histogram of the count of images in each unique class.**
 <figure>
- <img src="./traffic-signs-data/Screenshots/hist.png" width="1072" alt="Combined Image" />
+ <img src="./traffic-signs-data/README-img/hist.png" width="1072" alt="Combined Image" />
  <figcaption>
  <p></p> 
  </figcaption>
