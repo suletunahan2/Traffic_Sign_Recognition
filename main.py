@@ -21,7 +21,7 @@ with open(testing_file, mode='rb') as file:
 # print(type(train), type(test)) # Burda verilerin dictionary oldugunu görüyoruz.
 
 signs=[] 
-
+# Comma Separated Values (CSV) – Virgülle Ayrılmış Değerler  dosyası, bir veri listesi içeren düz metin dosyasıdır. 
 with open('signnames.csv', 'r') as csvfile: # her bir label id sini adla eşleştiren excel dosyasını okuyoruz ve listeye atıyoruz.
     signnames = csv.reader(csvfile, delimiter=',')
     next(signnames,None) # signnamesi listeye atma
@@ -116,7 +116,9 @@ def histogram(dataset,label):
     #center = [x for x, _ in enumerate(datset)]
     
     width = 0.7 * (bins[1] - bins[0])
+
     center = (bins[:-1] + bins[1:]) / 2
+
     plt.bar(center, hist, align='center', width=width)
     plt.title("Histogram")
     plt.xlabel(label)
@@ -133,10 +135,13 @@ histogram(y_test, "Testing examples")
 
 # Step 3: Data Preprocessing
 
-'''Yapilacak islemler:
+''' Veri önişleme için yapilacak islemler:
 Shuffling , Grayscaling , Local Histogram Equalization , Normalization.
 
 '''
+
+
+
 
 
 
