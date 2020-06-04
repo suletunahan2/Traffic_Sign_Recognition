@@ -101,7 +101,7 @@ I will use 'skimage' to apply local histogram synchronization to training images
 </figure>
 
 ## 3-) Convolutional Neural Network
-
+CNN is used for image classification, object detection.
 
 
 

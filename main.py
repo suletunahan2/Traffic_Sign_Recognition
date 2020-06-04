@@ -140,6 +140,74 @@ Shuffling , Grayscaling , Local Histogram Equalization , Normalization.
 
 '''
 
+from sklearn.utils import shuffle # veri karistirma icin
+
+'''Grayscaling(Gri Tonlama)'''
+import cv2 #opencv
+def  gray_scale(img):
+     return cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+
+'''image_gray=list(map(gray_scale,X_train))'''
+
+# Plotting Gray Scale Image sample examples
+# image_list(image_gray,y_train,"Gray Scale Image","gray")
+
+'''Local Histogram Equalization (Lokal Histogram Eşitleme) 
+'''
+import skimage.morphology as morp #  skimage :scikit-image for Local histogram equalization
+from skimage.filters import rank
+def local_histogram_equ(img):
+    # Local Equalization, disk shape kernel
+    # Better contrast with disk kernel but could be different
+    kernel=morp.disk(30)
+    img_local = rank.equalize(img, selem=kernel)
+    return img_local
+
+'''
+# Sample images after Local Histogram Equalization
+
+loc_equalized_images = list(map(local_histogram_equ, image_gray))
+
+# Plotting Sample images after Local Histogram Equalization
+image_list(loc_equalized_images, y_train, "Equalized Image", "gray")'''
+
+'''Normalization ( Normallestirme ) :       '''
+
+def img_normalization(img):  # [0, 1] scale.
+    img=np.divide(img,255)
+    return img
+
+
+# Sample images after normalization
+'''
+n = X_train.shape
+normalized_images = np.zeros((n[0], n[1], n[2]))
+
+for i, img in enumerate(loc_equalized_images):
+    normalized_images[i] = img_normalization(img)
+
+# Plotting Sample images after normalization
+image_list(normalized_images, y_train, "Normalized Image", "gray")
+normalized_images = normalized_images[..., None]'''
+
+
+def preprocessing(data):
+    ''' preprocessing function :
+    Shuffling , Grayscaling , Local Histogram Equalization , Normalization.
+    '''
+    image_gray=list(map(gray_scale,X_train))
+    loc_equalized_images = list(map(local_histogram_equ, image_gray))
+    n = X_train.shape
+    normalized_images = np.zeros((n[0], n[1], n[2]))
+
+    for i, img in enumerate(loc_equalized_images):
+        normalized_images[i] = img_normalization(img)
+
+    # image_list(normalized_images, y_train, "Normalized Image", "gray")
+    normalized_images = normalized_images[..., None]
+
+    return normalized_images
+
 
 
 
