@@ -208,6 +208,26 @@ def preprocessing(data):
 
     return normalized_images
 
+X_train_preprocessed=preprocessing(X_train)
+X_valid_preprocessed=preprocessing(X_valid)
+
+
+X_train_preprocessed_dn = X_train_preprocessed.reshape(len(X_train_preprocessed), 32*32*1).astype('float32')
+X_valid_preprocessed_dn = X_valid_preprocessed.reshape(len(X_valid_preprocessed), 32*32*1).astype('float32')
+
+import keras
+from keras.utils import to_categorical
+y_train_final_dn = keras.utils.to_categorical(y_train, n_classes)
+y_valid_final_dn = keras.utils.to_categorical(y_valid, n_classes)
+
+
+print(X_train_preprocessed_dn.shape)
+print(X_valid_preprocessed_dn.shape)
+print(y_train_final_dn.shape)
+print(y_valid_final_dn.shape)
+
+
+
 
 
 
