@@ -305,6 +305,23 @@ aug = ImageDataGenerator(
 	fill_mode="nearest")
 
 
+# initialize the number of epochs to train for, base learning rate,
+# and batch size
+NUM_EPOCHS = 30
+INIT_LR = 1e-3
+BS = 64
+
+print("[INFO] compiling model...")
+
+opt = tf.keras.optimizers.Adam(lr=INIT_LR, decay=INIT_LR / (NUM_EPOCHS * 0.5))
+model = TrafficSignNet.build(width=32, height=32, depth=3,
+	classes=n_classes)
+model.compile(loss="categorical_crossentropy", optimizer='adam',
+	metrics=["accuracy"])
+
+
+
+
 
 
 
