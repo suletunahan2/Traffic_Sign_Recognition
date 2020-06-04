@@ -347,6 +347,14 @@ plt.legend()
 plt.show()
 
 
+#testing accuracy on test dataset
+from sklearn.metrics import accuracy_score
+pred=model.predict_classes(X_test)
+#Accuracy with the test data
+from sklearn.metrics import accuracy_score
+print(accuracy_score(y_test,pred))
+
+
 
 
 
