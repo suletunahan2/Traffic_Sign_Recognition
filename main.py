@@ -289,6 +289,26 @@ class TrafficSignNet:
 		return model
 
 
+#data augmentation
+
+# construct the image generator for data augmentation
+from keras.preprocessing.image import ImageDataGenerator
+
+aug = ImageDataGenerator(
+	rotation_range=10,
+	zoom_range=0.15,
+	width_shift_range=0.1,
+	height_shift_range=0.1,
+	shear_range=0.15,
+	horizontal_flip=False,
+	vertical_flip=False,
+	fill_mode="nearest")
+
+
+
+
+
+
 
 
 
