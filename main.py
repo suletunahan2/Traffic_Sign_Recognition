@@ -328,6 +328,24 @@ H = model.fit_generator(aug.flow(X_train,y_train_final_dn,batch_size=64),validat
 
 
 
+#plotting graphs for accuracy 
+plt.figure(0)
+plt.plot(H.history['accuracy'], label='training accuracy')
+plt.plot(H.history['val_accuracy'], label='val accuracy')
+plt.title('Accuracy')
+plt.xlabel('epochs')
+plt.ylabel('accuracy')
+plt.legend()
+plt.show()
+plt.figure(1)
+plt.plot(H.history['loss'], label='training loss')
+plt.plot(H.history['val_loss'], label='val loss')
+plt.title('Loss')
+plt.xlabel('epochs')
+plt.ylabel('loss')
+plt.legend()
+plt.show()
+
 
 
 
