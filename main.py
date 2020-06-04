@@ -321,7 +321,10 @@ model.compile(loss="categorical_crossentropy", optimizer='adam',
 
 
 
-
+# train the network
+print("[INFO] training network...")
+H = model.fit_generator(aug.flow(X_train,y_train_final_dn,batch_size=64),validation_data=(X_valid, y_valid_final_dn),
+	epochs=NUM_EPOCHS)
 
 
 
