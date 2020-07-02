@@ -100,8 +100,31 @@ I will use 'skimage' to apply local histogram synchronization to training images
  </figcaption>
 </figure>
 
-## 3-) Convolutional Neural Network
-CNN is used for image classification, object detection.
+## 3-) Design Model
+There are 3 different types of layers in the model. These are:
+Convolutional, Pooling, Fully connected 
+Operations such as 'padding' and 'stride' are done in the Convolutional layer. 
+The 'padding' process is performed both due to the reduction of the output and the less use of the information of the pixels on the edges.
+If 'valid convolution' there is no padding. But if 'same convolution' is, the padding will be the size of the output to be the same as the input. 
+'strided' indicates how many blocks the filter will do by jumping while performing the convolution process. 
+I did Max Pooling on the pooling layer. Depending on the filter and stride, Max Pooling takes the greatest value in the area it covers. 
+The Fully connected layer is guessed. 
+The type of model I use is 'sequential' because it is the easiest way to create a model in Keras. 
+I first added a 2-dimensional Convolutional layer to the model. (5X5) I chose to consist of 8 filters and padding as 'same'. Since it is the first layer, it has to take inputshape as a parameter.
+Then I added a layer for the activation process. We need the Activation Function to introduce nonlinear real-world features to artificial neural networks. 
+If this is not done, the output signal becomes a linear function. Here I used 'ReLU (Rectified Linear Unit)' as a function.
+Because the computational load is less than the sigmoid and hyperbolic tangent function.
+I added the Batch Normalization layer after the activation layer. With Batch Normalization, all of the inputs in the stack are summed and divided by the total number of entries. Then, the average value is subtracted from each input, squared and all summed up. It is then divided by the total number of entries in the stack. This is called the variance of the stack. 
+In other words, it is a measure of the intervals in which the data are generally available. The data is being normalized. Normalized data is multiplied by gamma (scaling parameter) and beta (scroll parameter). In summary, however, training time is reduced and the model performs better.
+
+To the other layer, I added the MaxPooling2D layer. The MaxPooling operation takes a given poolsize of clusters from our data and creates a new matrix using the largest values ​​within those clusters. 
+Since the size of the matrix formed becomes smaller, it will increase our processing speed in the next layers and also prevents the MaxPooling overfit situation. 
+
+Our multi-dimensional data in the flatten layer is made one-dimensional and ready for the standard artificial neural network. 
+Dropout: Deletes random data from the train matrix at the given rate, ie disables it. It is also used to prevent Overfit situations and to increase the variety of our train data. Dropout layer is not used if test data passes through the network.
+Dense: It creates a standard artificial neural network layer, contains as many neurons as the number given in the first parameter.
+I used 'Softmax' as the last activation function. Because this function is used when more than 2 classifications are required. I set Dense as the number of classes.
+This function returns the model I created.
 
 
 

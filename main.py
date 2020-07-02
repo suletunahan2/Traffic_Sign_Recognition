@@ -1,35 +1,41 @@
 
-import pickle 
-'''pickle modülü, Python nesnelerini serileştirmenizi sağlayan ufak ama güçlü bir kütüphane. Kullanımı oldukça basit. Tek dikkat etmeniz gereken şey, yazdıracağınız dosyayı ikili (binary) formatta kullanmanız.
-Bir python nesnesinin byte stringine dönüşmüş  haline pickle denir. ''' 
-import numpy as np
-import csv #excelden okumak için
-import matplotlib.pyplot as plt # veri görsellestirme icin
-import random
+import pickle
+
+from google.colab import drive
+drive.mount('/content/drive') # Mounted at / content / drive
 
 
 # Step 1: Load The Data
 
-training_file = 'C:\\Users\\suletunahan2\\Desktop\\tüm_dersler_2020\\softwarelab2\\dataset\\traffic-signs-data\\train.p'
-testing_file = 'C:\\Users\\suletunahan2\\Desktop\\tüm_dersler_2020\\softwarelab2\\dataset\\traffic-signs-data\\test.p'
+training_file = '/content/drive/My Drive/Colab Notebooks/CNN/traffic-signs-data2.zip (Unzipped Files)/train.p'
+testing_file = '/content/drive/My Drive/Colab Notebooks/CNN/traffic-signs-data2.zip (Unzipped Files)/test.p'
+validation_file= '/content/drive/My Drive/Colab Notebooks/CNN/traffic-signs-data2.zip (Unzipped Files)/valid.p'
 
-with open(training_file,mode='rb') as file:  # rb:Opens a file for reading only in binary format. The file pointer is placed at the beginning of the file. This is the default mode.
+with open(training_file,mode='rb') as file:  
     train = pickle.load(file)
+    
+with open(validation_file, mode='rb') as file:
+    valid = pickle.load(file)
+    
 with open(testing_file, mode='rb') as file:
     test = pickle.load(file)
 
-# print(type(train), type(test)) # Burda verilerin dictionary oldugunu görüyoruz.
+print(type(train), type(test)) # Burda verilerin dictionary oldugunu görüyoruz.
+
+import csv
 
 signs=[] 
+signnames='/content/drive/My Drive/Colab Notebooks/CNN/signnames.csv'
+
 # Comma Separated Values (CSV) – Virgülle Ayrılmış Değerler  dosyası, bir veri listesi içeren düz metin dosyasıdır. 
-with open('signnames.csv', 'r') as csvfile: # her bir label id sini adla eşleştiren excel dosyasını okuyoruz ve listeye atıyoruz.
+with open(signnames, 'r') as csvfile: 
     signnames = csv.reader(csvfile, delimiter=',')
     next(signnames,None) # signnamesi listeye atma
     for row in signnames:
         signs.append(row[1])
     csvfile.close()
 
-# print(signs)
+print(signs)
 
 
 #Step 2: Dataset Summary & Exploration
@@ -47,23 +53,36 @@ data bir dictionary dir ve 4 key-value çiftinden olusur. Bunlar:
 'coords' : koordinatlarını temsil eden tuples (x1, y1, x2, y2) içeren bir listedir.
 
  '''
-
+import numpy as np
 # İlk basta x ve y ye feature ve label datalarını atıyoruz.
 x_train=train['features']
 y_train = train['labels']
+
+
+X_valid, y_valid = valid['features'], valid['labels']
 
 x_test=test['features']
 y_test =test['labels']
 
 # print(y_test) #output is label like [16  1 38 ...  6  7 10]
 # .shape →Numpy array nesnesinin kaç satır ve sütundan oluştuğunu gösteren bir tupple nesnesi döndürür.
+# Number of training examples
 print(f"Number of examples for training: {x_train.shape[0]}")
+# Number of validation examples.
+print("Number of validation examples: ", X_valid.shape[0])
+# Number of testing examples
 print(f"Number of examples for test : {x_test.shape[0]}")
+
 print(f"Image data shape : {x_train[0].shape}")
-print(f"Number of  classes : {len(np.unique(y_train))}")
+n_classes = len(np.unique(y_train))
+print(f"Number of  classes : {n_classes}")
+
+print(X_train.shape,X_test.shape,y_train.shape,y_test.shape)#y'nin boyutu düzeltilmeli
 
 
 # matplotlib
+import matplotlib.pyplot as plt
+import random
 
 def image_list(dataset_x,dataset_y, ylabel="",cmap=None):
     '''Bir döngü sayesinde datasetten rastgele üretilen bir sayiya gore verileri görselleştirir.
@@ -98,6 +117,18 @@ def image_list(dataset_x,dataset_y, ylabel="",cmap=None):
 
 image_list(x_train, y_train, "Training example")
 image_list(x_test, y_test, "Testing example")
+image_list(X_valid, y_valid, "Validation example")
+X_train_one_label=X_train[np.where(y_train==0)]#tek bir id için
+image_list(X_train_one_label, y_train, "One label example")
+
+#histogram 1
+import seaborn as sns
+
+plt.figure(figsize=(10,7))
+g = sns.countplot(y_train, palette="icefire")
+plt.title("Number of  classes")
+
+#histogram 2
 
 def histogram(dataset,label):
     ''' gelen datayı histogram seklinde görsellestirmeye yarar.
@@ -131,6 +162,7 @@ def histogram(dataset,label):
 
 histogram(y_train, "Training examples")
 histogram(y_test, "Testing examples")
+histogram(y_valid, "Validation examples")
 
 
 # Step 3: Data Preprocessing
