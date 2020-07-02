@@ -105,7 +105,7 @@ There are 3 different types of layers in the model. These are:
 Convolutional, Pooling, Fully connected 
 
 <figure>
- <img src="./traffic-signs-data/README-img/model.jpg" width="1072" alt="Combined Image" />
+ <img src="./traffic-signs-data/README-img/model.jpeg" width="1072" alt="Combined Image" />
  <figcaption>
  <p></p> 
  </figcaption>
@@ -124,6 +124,14 @@ If 'valid convolution' there is no padding. But if 'same convolution' is, the pa
 </figure>
 
 I did Max Pooling on the pooling layer. Depending on the filter and stride, Max Pooling takes the greatest value in the area it covers. 
+
+<figure>
+ <img src="./traffic-signs-data/README-img/max.png" width="1072" alt="Combined Image" />
+ <figcaption>
+ <p></p> 
+ </figcaption>
+</figure>
+
 The Fully connected layer is guessed. 
 The type of model I use is 'sequential' because it is the easiest way to create a model in Keras. 
 I first added a 2-dimensional Convolutional layer to the model. (5X5) I chose to consist of 8 filters and padding as 'same'. Since it is the first layer, it has to take inputshape as a parameter.
