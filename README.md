@@ -105,7 +105,7 @@ There are 3 different types of layers in the model. These are:
 Convolutional, Pooling, Fully connected 
 
 <figure>
- <img src="./traffic-signs-data/README-img/model.png" width="1072" alt="Combined Image" />
+ <img src="./traffic-signs-data/README-img/model.jpg" width="1072" alt="Combined Image" />
  <figcaption>
  <p></p> 
  </figcaption>
@@ -114,7 +114,15 @@ Convolutional, Pooling, Fully connected
 Operations such as 'padding' and 'stride' are done in the Convolutional layer. 
 The 'padding' process is performed both due to the reduction of the output and the less use of the information of the pixels on the edges.
 If 'valid convolution' there is no padding. But if 'same convolution' is, the padding will be the size of the output to be the same as the input. 
-'strided' indicates how many blocks the filter will do by jumping while performing the convolution process. 
+'strided' indicates how many blocks the filter will do by jumping while performing the convolution process.
+ 
+<figure>
+ <img src="./traffic-signs-data/README-img/padding.gif" width="1072" alt="Combined Image" />
+ <figcaption>
+ <p></p> 
+ </figcaption>
+</figure>
+
 I did Max Pooling on the pooling layer. Depending on the filter and stride, Max Pooling takes the greatest value in the area it covers. 
 The Fully connected layer is guessed. 
 The type of model I use is 'sequential' because it is the easiest way to create a model in Keras. 
