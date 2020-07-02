@@ -229,7 +229,7 @@ def preprocessing(data):
     '''
     image_gray=list(map(gray_scale,X_train))
     loc_equalized_images = list(map(local_histogram_equ, image_gray))
-    n = X_train.shape
+    n = data.shape
     normalized_images = np.zeros((n[0], n[1], n[2]))
 
     for i, img in enumerate(loc_equalized_images):
@@ -257,6 +257,8 @@ print(X_train_preprocessed_dn.shape)
 print(X_valid_preprocessed_dn.shape)
 print(y_train_final_dn.shape)
 print(y_valid_final_dn.shape)
+
+#Design Model
 
 # import the necessary packages
 import tensorflow as tf
@@ -378,6 +380,20 @@ plt.ylabel('loss')
 plt.legend()
 plt.show()
 
+# plot the training loss and accuracy
+N = np.arange(0, NUM_EPOCHS)
+plt.style.use("ggplot")
+plt.figure()
+plt.plot(N, H.history["loss"], label="train_loss")
+plt.plot(N, H.history["val_loss"], label="val_loss")
+plt.plot(N, H.history["accuracy"], label="train_acc")
+plt.plot(N, H.history["val_accuracy"], label="val_acc")
+plt.title("Training Loss and Accuracy on Dataset")
+plt.xlabel("Epoch #")
+plt.ylabel("Loss/Accuracy")
+plt.legend(loc="lower left")
+plt.show()
+
 
 #testing accuracy on test dataset
 from sklearn.metrics import accuracy_score
@@ -385,6 +401,7 @@ pred=model.predict_classes(X_test)
 #Accuracy with the test data
 from sklearn.metrics import accuracy_score
 print(accuracy_score(y_test,pred))
+
 
 
 

@@ -151,5 +151,32 @@ I used 'Softmax' as the last activation function. Because this function is used 
 This function returns the model I created.
 
 
+RESULT:
+
+<figure>
+ <img src="./traffic-signs-data/README-img/son.png" width="1072" alt="Combined Image" />
+ <figcaption>
+ <p></p> 
+ </figcaption>
+</figure>
+
+Graphs:
+
+<figure>
+ <img src="./traffic-signs-data/README-img/songraf.png" width="1072" alt="Combined Image" />
+ <figcaption>
+ <p></p> 
+ </figcaption>
+</figure>
+
+<figure>
+ <img src="./traffic-signs-data/README-img/song2.png" width="1072" alt="Combined Image" />
+ <figcaption>
+ <p></p> 
+ </figcaption>
+</figure>
+
+
+
 
 
